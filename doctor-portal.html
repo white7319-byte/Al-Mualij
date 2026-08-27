@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor & Clinical Staff Portal | Al-Mualij Medical Clinic</title>
+  <meta name="description" content="Physician consultation room, patient queue management, clinical EHR notes, and Unani herbal prescriptions.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/doctor.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body class="doctor-body">
+
+  <!-- ==================== 1. DOCTOR APP BAR ==================== -->
+  <header class="doctor-header">
+    <div class="container portal-nav-wrap">
+      <a href="index.html" class="portal-brand">
+        <div class="logo-icon-wrap" style="background: linear-gradient(135deg, #D97706, #059669); width: 38px; height: 38px;">
+          <i class="fas fa-user-md"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title" style="color: #FFFFFF; font-size: 1.15rem;">AL-MUALIJ CLINICAL DESK</span>
+          <span class="brand-tagline" style="color: #FBBF24; font-size: 0.65rem;">Physician & Specialist Portal</span>
+        </div>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 1.25rem;">
+        <a href="index.html" class="top-bar-link" style="font-size: 0.875rem;">
+          <i class="fas fa-home"></i> Clinic Home
+        </a>
+        <a href="portal.html" class="top-bar-link" style="font-size: 0.875rem;">
+          <i class="fas fa-user"></i> Patient View
+        </a>
+        <button class="btn btn-outline-white btn-sm" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 2. DOCTOR BANNER ==================== -->
+  <section class="doctor-profile-banner">
+    <div class="container">
+      <div class="profile-card-grid">
+        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80" alt="Hakim Dr. Tariq Al-Mansoor" class="profile-avatar-large" style="border-color: var(--color-gold);">
+        <div class="profile-info">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h1 id="docName">Hakim Dr. Tariq Al-Mansoor</h1>
+            <span class="badge-tag gold" style="margin-bottom: 0; font-size: 0.75rem;">
+              Attending Physician
+            </span>
+          </div>
+          <div style="font-size: 0.95rem; color: #CBD5E1; margin-top: 2px;" id="docTitle">
+            Chief Consultant of Unani Medicine & Pulse Diagnosis (Nabz)
+          </div>
+          <div class="patient-meta-tags" id="docMetaTags">
+            <!-- Rendered by /js/doctor.js -->
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: right;">
+          <button class="btn btn-gold btn-sm" onclick="openPrescribeModal('', 'Selected Patient', '')">
+            <i class="fas fa-mortar-pestle"></i> Write Prescription
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. CLINICAL QUEUE DASHBOARD ==================== -->
+  <main class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
+    
+    <!-- KPI Row -->
+    <div class="quick-stats-row">
+      <div class="stat-box">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Total Patients in Queue</h4>
+          <div class="stat-value" id="kpiTotalPatients">0</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon gold">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Pending Consultations</h4>
+          <div class="stat-value" style="color: var(--color-gold);" id="kpiPending">0</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon cyan">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Completed Sessions</h4>
+          <div class="stat-value" style="color: var(--color-cyan);" id="kpiCompleted">0</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">
+          <i class="fas fa-shield-virus"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Surgery Avoidance Success</h4>
+          <div class="stat-value" style="color: var(--color-jade);">98.4%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h2 style="font-size: 1.4rem; color: var(--color-primary);">Patient Consultation Queue</h2>
+        <p style="font-size: 0.875rem; color: var(--color-text-muted);">Real-time appointments synced with Firebase Firestore database.</p>
+      </div>
+
+      <div class="doctor-filter-tabs">
+        <button class="doc-filter-tab active" data-status="all" onclick="filterDoctorQueue('all')">All Consultations</button>
+        <button class="doc-filter-tab" data-status="confirmed" onclick="filterDoctorQueue('confirmed')">Scheduled</button>
+        <button class="doc-filter-tab" data-status="completed" onclick="filterDoctorQueue('completed')">Completed</button>
+      </div>
+    </div>
+
+    <!-- Queue Table -->
+    <div class="doctor-table-wrap">
+      <table class="doctor-queue-table">
+        <thead>
+          <tr>
+            <th>Patient Info</th>
+            <th>Therapy & Reported Symptoms</th>
+            <th>Date & Slot</th>
+            <th>Status</th>
+            <th>Clinical Examination Note</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="doctorQueueTableBody">
+          <!-- Rendered by /js/doctor.js -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="authModal"></div>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/n8n-integrations.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/doctor.js"></script>
+</body>
+</html>

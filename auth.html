@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Login & Registration | Al-Mualij Medical Clinic</title>
+  <meta name="description" content="Sign in to your patient EHR portal or doctor clinical dashboard at Al-Mualij Medical Clinic.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body style="background-color: var(--color-bg-light);">
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="index.html" class="logo-icon-wrap" style="margin: 0 auto; width: 44px; height: 44px; text-decoration: none;">
+          <i class="fas fa-seedling"></i>
+        </a>
+        <div class="brand-title">AL-MUALIJ CLINIC</div>
+        <div class="brand-tagline">Eastern Medicine & Non-Surgical Care</div>
+
+        <!-- Role Switcher -->
+        <div class="role-toggle-bar">
+          <button class="role-toggle-btn active" id="roleTogglePatient" onclick="setAuthRole('patient')">
+            <i class="fas fa-user-circle"></i> Patient Portal
+          </button>
+          <button class="role-toggle-btn doctor" id="roleToggleDoctor" onclick="setAuthRole('doctor')">
+            <i class="fas fa-user-md"></i> Doctor / Staff
+          </button>
+        </div>
+      </div>
+
+      <div class="auth-body">
+        <!-- 1-Click Demo Shortcut -->
+        <div class="demo-login-box">
+          <div class="demo-login-title"><i class="fas fa-bolt"></i> 1-Click Fast Demo Login</div>
+          <div class="demo-buttons-grid">
+            <button class="btn-demo" onclick="quickDemoLogin('patient')">
+              <i class="fas fa-user"></i> Demo Patient
+            </button>
+            <button class="btn-demo doc" onclick="quickDemoLogin('doctor')">
+              <i class="fas fa-stethoscope"></i> Demo Doctor
+            </button>
+          </div>
+        </div>
+
+        <p id="authRoleDescription" style="font-size: 0.85rem; color: var(--color-text-muted); text-align: center; margin-bottom: 1.25rem;">
+          Access your personal health records, Unani prescriptions & appointments.
+        </p>
+
+        <!-- Mode Switcher (Login / Register) -->
+        <div class="auth-mode-switch">
+          <div class="auth-tab-link active" id="authLoginTab" onclick="setAuthMode('login')">Sign In</div>
+          <div class="auth-tab-link" id="authRegisterTab" onclick="setAuthMode('register')">Create Patient Account</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="authLoginForm" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Email Address (*)</label>
+            <input type="email" id="loginEmail" class="form-input" placeholder="e.g., patient@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password (*)</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required>
+          </div>
+          <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.75rem;">
+            <i class="fas fa-sign-in-alt"></i> Sign In to Account
+          </button>
+        </form>
+
+        <!-- REGISTER FORM (Patients Only) -->
+        <form id="authRegisterForm" style="display: none;" onsubmit="handleRegisterSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name (*)</label>
+            <input type="text" id="regName" class="form-input" placeholder="e.g., Sarah Johnson" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address (*)</label>
+            <input type="email" id="regEmail" class="form-input" placeholder="e.g., sarah@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mobile / WhatsApp Number</label>
+            <input type="tel" id="regPhone" class="form-input" placeholder="+1 (555) 000-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Blood Group</label>
+            <select id="regBloodGroup" class="form-select">
+              <option value="O+">O Positive (O+)</option>
+              <option value="A+">A Positive (A+)</option>
+              <option value="B+">B Positive (B+)</option>
+              <option value="AB+">AB Positive (AB+)</option>
+              <option value="O-">O Negative (O-)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Create Password (*)</label>
+            <input type="password" id="regPassword" class="form-input" placeholder="Minimum 6 characters" required>
+          </div>
+          <button type="submit" id="regSubmitBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.75rem;">
+            <i class="fas fa-user-plus"></i> Create Patient Account
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem;">
+          <a href="index.html" style="color: var(--color-jade); font-weight: 600;">
+            <i class="fas fa-arrow-left"></i> Return to Clinic Main Page
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/n8n-integrations.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

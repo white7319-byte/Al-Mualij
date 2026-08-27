@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Portal & Health Records | Al-Mualij Medical Clinic</title>
+  <meta name="description" content="Access your personalized Eastern Medicine consultations, active Unani herbal regimens, diagnostic reports, and non-surgical recovery tracking.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body class="portal-body">
+
+  <!-- ==================== 1. PORTAL HEADER ==================== -->
+  <header class="portal-header">
+    <div class="container portal-nav-wrap">
+      <a href="index.html" class="portal-brand">
+        <div class="logo-icon-wrap" style="width: 36px; height: 36px; font-size: 1.1rem;">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title" style="color: #FFFFFF; font-size: 1.15rem;">AL-MUALIJ</span>
+          <span class="brand-tagline" style="color: #A7F3D0; font-size: 0.65rem;">Patient EHR & Health Records</span>
+        </div>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 1.25rem;">
+        <a href="index.html" class="top-bar-link" style="font-size: 0.875rem;">
+          <i class="fas fa-arrow-left"></i> Return to Clinic Main
+        </a>
+        <button class="btn btn-primary btn-sm" onclick="openBookingModal()">
+          <i class="fas fa-plus"></i> Book New Session
+        </button>
+        <div class="portal-user-badge">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Patient Avatar" class="user-avatar-sm">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 2. PATIENT PROFILE EHR BANNER ==================== -->
+  <section class="patient-profile-banner">
+    <div class="container">
+      <div class="profile-card-grid">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Zubair Hashmi" class="profile-avatar-large">
+        <div class="profile-info">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h1 id="portalPatientName">Zubair Hashmi</h1>
+            <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; margin-bottom: 0; font-size: 0.75rem;">
+              Verified Patient
+            </span>
+          </div>
+          <div style="font-size: 0.95rem; color: #CBD5E1; margin-top: 2px;">
+            Primary Diagnosis: <strong style="color: #FFFFFF;">L4-L5 Lumbar Disc Bulge & Sciatica (Non-Surgical Protocol)</strong>
+          </div>
+          <div class="patient-meta-tags" id="portalPatientMeta">
+            <!-- Rendered by /js/portal.js -->
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: right;">
+          <button class="btn btn-outline-white btn-sm" onclick="viewReportDetail('rep-01')">
+            <i class="fas fa-file-download"></i> Full EHR Export
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. PORTAL DASHBOARD CONTENT ==================== -->
+  <main class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
+    
+    <!-- Quick KPI Stats Row -->
+    <div class="quick-stats-row">
+      <div class="stat-box">
+        <div class="stat-icon">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Pain Score Reduction</h4>
+          <div class="stat-value" style="color: var(--color-jade);">1.5 / 10 <span style="font-size: 0.75rem; color: var(--color-text-light); font-weight: normal;">(was 9.0)</span></div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon gold">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Surgery Status</h4>
+          <div class="stat-value" style="color: var(--color-gold); font-size: 1.2rem;">Avoided (92%)</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon cyan">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Active Herbal Rx</h4>
+          <div class="stat-value">3 Formulations</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Completed Sessions</h4>
+          <div class="stat-value">4 / 6 Completed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="portal-tabs-nav">
+      <button class="portal-tab-btn active" data-tab="tab-appointments">
+        <i class="fas fa-calendar-alt"></i> Consultations & Bookings
+      </button>
+      <button class="portal-tab-btn" data-tab="tab-prescriptions">
+        <i class="fas fa-mortar-pestle"></i> Herbal Regimens & Rx
+      </button>
+      <button class="portal-tab-btn" data-tab="tab-tracker">
+        <i class="fas fa-chart-line"></i> Non-Surgical Progress Tracker
+      </button>
+      <button class="portal-tab-btn" data-tab="tab-reports">
+        <i class="fas fa-file-medical-alt"></i> Diagnostic Reports & Summaries
+      </button>
+    </div>
+
+    <!-- ==================== TAB 1: APPOINTMENTS ==================== -->
+    <div class="portal-tab-panel active" id="tab-appointments">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div>
+          <h2 style="font-size: 1.35rem; color: var(--color-primary);">Your Clinic Appointments</h2>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">Real-time appointments synced directly with Firebase Firestore and clinic triage schedule.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openBookingModal()">
+          <i class="fas fa-plus"></i> Schedule New Visit
+        </button>
+      </div>
+
+      <div id="portalAppointmentsList">
+        <!-- Rendered by /js/portal.js -->
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: PRESCRIPTIONS ==================== -->
+    <div class="portal-tab-panel" id="tab-prescriptions">
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.35rem; color: var(--color-primary);">Prescribed Unani Herbal Regimens & Dietetics</h2>
+        <p style="font-size: 0.875rem; color: var(--color-text-muted);">Custom phytopharmacological formulas customized according to your Mizaj (Damwi-Safrawi temperament).</p>
+      </div>
+
+      <div class="prescriptions-grid" id="portalPrescriptionsGrid">
+        <!-- Rendered by /js/portal.js -->
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: NON-SURGICAL PROGRESS TRACKER ==================== -->
+    <div class="portal-tab-panel" id="tab-tracker">
+      <div class="progress-tracker-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <span class="badge-tag" style="background: rgba(16, 185, 129, 0.12); color: var(--color-jade); margin-bottom: 0.4rem;">
+              <i class="fas fa-chart-line"></i> Clinical Pain & Mobility Progression
+            </span>
+            <h2 style="font-size: 1.4rem; color: var(--color-primary);">L4-S1 Sciatica Decompression Progression</h2>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted);">Visualizing reduction in nerve irritation over 4 consecutive Hijama and spinal realignment sessions.</p>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Recovery Status</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: var(--color-jade);">85% Decompressed</div>
+          </div>
+        </div>
+
+        <div class="pain-meter-wrap">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">
+            <span>Initial State (Day 1: 9.0 Severe Pain)</span>
+            <span style="color: var(--color-jade);">Current Score: 1.5 Mild / Asymptomatic</span>
+          </div>
+          <div class="pain-scale-bar">
+            <!-- Marker placed at 15% (1.5/10) -->
+            <div class="pain-marker" style="left: 15%;">1.5</div>
+          </div>
+          <div class="pain-labels">
+            <span>0 - No Pain / Healed</span>
+            <span>3 - Moderate</span>
+            <span>6 - High Distress</span>
+            <span>10 - Incapacitating Pain</span>
+          </div>
+        </div>
+
+        <!-- Milestones Timeline -->
+        <h4 style="font-size: 1rem; color: var(--color-primary); margin-top: 2rem; margin-bottom: 0.75rem;">Therapeutic Milestones Reached</h4>
+        <div class="milestones-timeline">
+          <div class="milestone-step completed">
+            <i class="fas fa-check-circle" style="font-size: 1.5rem; margin-bottom: 0.35rem;"></i>
+            <div style="font-weight: 700; font-size: 0.9rem;">Pulse & Nabz Analysis</div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">Mizaj balance identified</div>
+          </div>
+          <div class="milestone-step completed">
+            <i class="fas fa-check-circle" style="font-size: 1.5rem; margin-bottom: 0.35rem;"></i>
+            <div style="font-weight: 700; font-size: 0.9rem;">Hijama Vascular Detox</div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">4/4 sessions cleared stasis</div>
+          </div>
+          <div class="milestone-step completed">
+            <i class="fas fa-check-circle" style="font-size: 1.5rem; margin-bottom: 0.35rem;"></i>
+            <div style="font-weight: 700; font-size: 0.9rem;">Spinal Realignment</div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">L4-L5 disc decompression</div>
+          </div>
+          <div class="milestone-step" style="opacity: 0.6;">
+            <i class="fas fa-circle-notch" style="font-size: 1.5rem; margin-bottom: 0.35rem; color: var(--color-gold);"></i>
+            <div style="font-weight: 700; font-size: 0.9rem;">Final Discharge Review</div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">Scheduled Sep 02, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: MEDICAL REPORTS ==================== -->
+    <div class="portal-tab-panel" id="tab-reports">
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.35rem; color: var(--color-primary);">Official Clinical Summaries & PDF Documents</h2>
+        <p style="font-size: 0.875rem; color: var(--color-text-muted);">Download certified clinical evaluation reports and non-surgical therapy notes for insurance reimbursement.</p>
+      </div>
+
+      <div class="reports-list" id="portalReportsList">
+        <!-- Rendered by /js/portal.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Multi-step Booking Modal (Shared) -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-dialog booking-modal-dialog">
+      <button class="modal-close-btn" onclick="closeBookingModal()">&times;</button>
+      <div class="booking-header">
+        <div class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; margin-bottom: 0.35rem;">
+          <i class="fas fa-shield-alt"></i> Non-Surgical Clinical Appointment
+        </div>
+        <h2>Reserve Your Consultation</h2>
+        <p>Complete the 4 simple steps below to schedule your examination.</p>
+        <div class="booking-steps-bar">
+          <div class="step-progress-line" id="stepProgressLine"></div>
+          <div class="step-node active" id="stepNode1"><div class="step-circle">1</div><div class="step-label">Therapy</div></div>
+          <div class="step-node" id="stepNode2"><div class="step-circle">2</div><div class="step-label">Specialist</div></div>
+          <div class="step-node" id="stepNode3"><div class="step-circle">3</div><div class="step-label">Date & Time</div></div>
+          <div class="step-node" id="stepNode4"><div class="step-circle">4</div><div class="step-label">Patient Info</div></div>
+        </div>
+      </div>
+      <div class="booking-body">
+        <div class="booking-step-content active" id="bookingStep1">
+          <h3 class="step-heading">Step 1: Choose Your Non-Surgical Therapy</h3>
+          <div class="specialty-select-grid" id="bookingSpecialtyGrid"></div>
+        </div>
+        <div class="booking-step-content" id="bookingStep2">
+          <h3 class="step-heading">Step 2: Select Consulting Practitioner</h3>
+          <div class="provider-select-grid" id="bookingProviderGrid"></div>
+        </div>
+        <div class="booking-step-content" id="bookingStep3">
+          <h3 class="step-heading">Step 3: Select Date & Time</h3>
+          <div class="datetime-grid">
+            <div>
+              <div class="form-group">
+                <label class="form-label" for="bookingDateInput">Appointment Date (*)</label>
+                <input type="date" id="bookingDateInput" class="form-input" required>
+              </div>
+            </div>
+            <div class="time-slots-container">
+              <div class="time-period-group">
+                <h5>Morning Slots</h5>
+                <div class="time-slots-grid" id="morningSlotsGrid"></div>
+              </div>
+              <div class="time-period-group">
+                <h5>Afternoon Slots</h5>
+                <div class="time-slots-grid" id="afternoonSlotsGrid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="booking-step-content" id="bookingStep4">
+          <h3 class="step-heading">Step 4: Patient Information</h3>
+          <div class="patient-form-grid">
+            <div class="form-group"><label class="form-label">Full Name (*)</label><input type="text" id="patientNameInput" class="form-input" value="Zubair Hashmi" required></div>
+            <div class="form-group"><label class="form-label">Email (*)</label><input type="email" id="patientEmailInput" class="form-input" value="zubair.hashmi@example.com" required></div>
+            <div class="form-group"><label class="form-label">Phone (*)</label><input type="tel" id="patientPhoneInput" class="form-input" value="+1 (555) 782-9901" required></div>
+            <div class="form-group"><label class="form-label">Age & Gender</label><input type="text" id="patientAgeInput" class="form-input" value="44, Male"></div>
+            <div class="form-group form-full"><label class="form-label">Notes</label><textarea id="patientSymptomsInput" class="form-textarea" rows="2">Follow-up check after Session 4.</textarea></div>
+          </div>
+        </div>
+      </div>
+      <div class="booking-footer">
+        <button class="btn btn-outline" id="bookingPrevBtn" style="display: none;" onclick="goToBookingStep(bookingState.currentStep - 1)"><i class="fas fa-arrow-left"></i> Previous</button>
+        <div style="flex-grow: 1;"></div>
+        <button class="btn btn-primary" id="bookingNextBtn" onclick="goToBookingStep(bookingState.currentStep + 1)">Next Step <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-primary" id="bookingSubmitBtn" style="display: none;" onclick="submitBooking()"><i class="fas fa-check-circle"></i> Confirm Appointment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Botpress Trigger -->
+  <button class="botpress-floating-btn" id="botpressTriggerBtn" aria-label="Open Health Chatbot">
+    <i class="fas fa-comments"></i>
+    <span class="botpress-unread-badge">1</span>
+  </button>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/n8n-integrations.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/botpress-init.js"></script>
+  <script src="js/doctors.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/portal.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+/* ==========================================================================
+   AL-MUALIJ CLINIC - AUTHENTICATION & LOGIN UI STYLES
+   Role-Based Patient & Doctor Portals, Glassmorphism, Auth Modals
+   ========================================================================== */
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+              var(--color-bg-light);
+  padding: 2rem 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.auth-header {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: #FFFFFF;
+  padding: 2.25rem 2rem 1.75rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.auth-header .brand-title {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.auth-header .brand-tagline {
+  color: #A7F3D0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+/* --- Role Toggle Buttons (Patient vs Doctor) --- */
+.role-toggle-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  margin-top: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.role-toggle-btn {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #CBD5E1;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.role-toggle-btn.active {
+  background: var(--color-jade-light);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.role-toggle-btn.doctor.active {
+  background: var(--color-gold);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+}
+
+/* --- Auth Body --- */
+.auth-body {
+  padding: 2rem;
+}
+
+.auth-mode-switch {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.75rem;
+}
+
+.auth-tab-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.auth-tab-link.active {
+  color: var(--color-jade);
+}
+
+.auth-tab-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-jade);
+}
+
+/* --- Demo Quick Login Box --- */
+.demo-login-box {
+  background: var(--color-bg-alt);
+  border: 1px dashed var(--color-jade);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.demo-login-title {
+  font-size: 0.775rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-jade);
+  margin-bottom: 0.5rem;
+}
+
+.demo-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.btn-demo {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  padding: 0.45rem 0.6rem;
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.btn-demo:hover {
+  border-color: var(--color-jade);
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--color-jade);
+}
+
+.btn-demo.doc:hover {
+  border-color: var(--color-gold);
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--color-gold);
+}
+
+/* --- User Profile Dropdown / Nav Status --- */
+.user-auth-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-nav-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.user-nav-chip:hover {
+  border-color: var(--color-jade-light);
+  background: #FFFFFF;
+}
+
+.user-nav-chip.doctor {
+  border-color: rgba(217, 119, 6, 0.3);
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--color-gold);
+}

@@ -1,0 +1,116 @@
+/* ==========================================================================
+   AL-MUALIJ CLINIC - DOCTOR & CLINICAL PORTAL STYLES
+   ========================================================================== */
+
+.doctor-body {
+  background-color: var(--color-bg-light);
+  min-height: 100vh;
+}
+
+.doctor-header {
+  background: var(--color-primary-dark);
+  color: #FFFFFF;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.doctor-profile-banner {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #16423C 100%);
+  color: #FFFFFF;
+  padding: 3rem 0 2.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.doctor-table-wrap {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  overflow-x: auto;
+  margin-bottom: 2.5rem;
+}
+
+.doctor-queue-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.doctor-queue-table th,
+.doctor-queue-table td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.doctor-queue-table th {
+  background: var(--color-bg-alt);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-pill.confirmed {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-jade);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.status-pill.completed {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563EB;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.status-pill.pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-gold);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.doctor-action-btns {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.doctor-filter-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.doc-filter-tab {
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.doc-filter-tab.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}

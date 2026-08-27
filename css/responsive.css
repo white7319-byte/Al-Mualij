@@ -1,0 +1,232 @@
+/* ==========================================================================
+   AL-MUALIJ CLINIC - RESPONSIVE & MOBILE DESIGN ADAPTATIONS
+   ========================================================================== */
+
+/* --- Mobile Drawer Navigation --- */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 82%;
+  max-width: 380px;
+  height: 100vh;
+  background: var(--color-primary-dark);
+  color: #FFFFFF;
+  z-index: 150;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 1.75rem;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.mobile-nav-drawer.open {
+  right: 0;
+}
+
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 140;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.mobile-drawer-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer-close-btn {
+  align-self: flex-end;
+  color: #94A3B8;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.drawer-close-btn:hover {
+  color: #FFFFFF;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.drawer-link {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+  color: var(--color-jade-light);
+  padding-left: 0.5rem;
+}
+
+.drawer-emergency-box {
+  margin-top: auto;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+/* --- Media Queries --- */
+
+/* Laptops & Tablets (Max 1024px) */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .hero-visual-wrap {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  
+  .quick-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .profile-card-grid {
+    grid-template-columns: auto 1fr;
+  }
+  
+  .profile-card-grid .btn {
+    grid-column: span 2;
+  }
+}
+
+/* Tablets (Max 768px) */
+@media (max-width: 768px) {
+  .top-bar-left span.hours-text {
+    display: none;
+  }
+  
+  .nav-menu {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .specialty-select-grid,
+  .provider-select-grid,
+  .datetime-grid,
+  .patient-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-full {
+    grid-column: span 1;
+  }
+  
+  .booking-body {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .booking-header {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .booking-footer {
+    padding: 1rem 1.25rem;
+  }
+  
+  .step-label {
+    display: none;
+  }
+  
+  .appointment-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .apt-time-badge {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .milestones-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small Mobile (Max 480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+  
+  .quick-stats-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .botpress-floating-btn {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 52px;
+    height: 52px;
+    font-size: 1.35rem;
+  }
+  
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+  
+  .toast {
+    min-width: unset;
+    width: 100%;
+  }
+}

@@ -1,0 +1,488 @@
+/* ==========================================================================
+   AL-MUALIJ CLINIC - PATIENT PORTAL & HEALTH RECORDS UI STYLES
+   ========================================================================== */
+
+.portal-body {
+  background-color: var(--color-bg-light);
+  min-height: 100vh;
+}
+
+/* --- Portal Top Nav / App Bar --- */
+.portal-header {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.portal-nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.portal-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.portal-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.user-avatar-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--color-jade-light);
+  object-fit: cover;
+}
+
+/* --- Patient EHR Banner --- */
+.patient-profile-banner {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: #FFFFFF;
+  padding: 3rem 0 2.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.patient-profile-banner::after {
+  content: '';
+  position: absolute;
+  right: -50px;
+  bottom: -50px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.profile-card-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+.profile-avatar-large {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-xl);
+  border: 3px solid var(--color-jade-light);
+  object-fit: cover;
+  box-shadow: var(--shadow-lg);
+}
+
+.profile-info h1 {
+  color: #FFFFFF;
+  font-size: 1.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.patient-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.meta-chip.mizaj {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.meta-chip.active-plan {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* --- Quick Metric Stats --- */
+.quick-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: -2rem;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 2.5rem;
+}
+
+.stat-box {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-jade);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.stat-icon.gold {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--color-gold);
+}
+
+.stat-icon.cyan {
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--color-cyan);
+}
+
+.stat-content h4 {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+/* --- Portal Navigation Tabs --- */
+.portal-tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.portal-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.portal-tab-btn:hover {
+  color: var(--color-jade);
+}
+
+.portal-tab-btn.active {
+  color: var(--color-jade);
+  border-bottom-color: var(--color-jade);
+  background: rgba(16, 185, 129, 0.04);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+/* --- Tab Panels --- */
+.portal-tab-panel {
+  display: none;
+}
+
+.portal-tab-panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* --- Appointments Cards & Timeline --- */
+.appointment-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  transition: all var(--transition-fast);
+}
+
+.appointment-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.appointment-card.upcoming {
+  border-left: 5px solid var(--color-jade);
+}
+
+.appointment-card.completed {
+  border-left: 5px solid #94A3B8;
+  opacity: 0.9;
+}
+
+.apt-time-badge {
+  text-align: center;
+  background: var(--color-bg-alt);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  min-width: 110px;
+}
+
+.apt-day {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.apt-month {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-jade);
+  text-transform: uppercase;
+}
+
+.apt-hour {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.apt-info {
+  flex-grow: 1;
+}
+
+.apt-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.apt-practitioner {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.apt-status {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+.apt-status.confirmed {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-jade);
+}
+
+.apt-status.done {
+  background: #E2E8F0;
+  color: #475569;
+}
+
+/* --- Prescriptions & Herbal Regimens --- */
+.prescriptions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.rx-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.rx-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-jade);
+}
+
+.rx-name {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-primary);
+}
+
+.rx-formulation {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.rx-dosage-box {
+  background: var(--color-bg-alt);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.rx-timing {
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.rx-diet-notes {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  border-top: 1px dashed var(--color-border);
+  padding-top: 0.75rem;
+}
+
+/* --- Non-Surgical Pain & Progress Tracker --- */
+.progress-tracker-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.pain-meter-wrap {
+  margin: 1.5rem 0;
+}
+
+.pain-scale-bar {
+  height: 18px;
+  background: linear-gradient(90deg, #10B981 0%, #F59E0B 50%, #EF4444 100%);
+  border-radius: var(--radius-full);
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.pain-marker {
+  position: absolute;
+  top: -6px;
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 3px solid var(--color-jade);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.pain-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.milestones-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.milestone-step {
+  text-align: center;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+}
+
+.milestone-step.completed {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.milestone-step.completed i {
+  color: var(--color-jade);
+}
+
+/* --- Medical Reports & PDF Downloads --- */
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.report-item {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.report-item:hover {
+  border-color: var(--color-jade-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.report-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}

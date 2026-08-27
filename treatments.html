@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non-Surgical Treatments & Eastern Therapies | Al-Mualij Medical Clinic</title>
+  <meta name="description" content="Discover clinical non-surgical treatments at Al-Mualij Clinic: Therapeutic Hijama (Cupping), Unani Herbal Pharmacology, Acupuncture, Eastern Spinal Alignment, and Hirudotherapy.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <!-- ==================== 1. TOP BAR ==================== -->
+  <aside class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <div class="emergency-tag">
+          <span class="emergency-dot"></span> 24/7 Clinical Helpline
+        </div>
+        <span class="hours-text" style="color: #94A3B8;">
+          <i class="fas fa-leaf" style="color: var(--color-jade-light); margin-right: 4px;"></i> Certified Non-Surgical Eastern Healthcare Center
+        </span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+18005556825" class="top-bar-link">
+          <i class="fas fa-phone-alt" style="color: var(--color-jade-light);"></i> +1 (800) 555-MUALIJ (6825)
+        </a>
+        <a href="portal.html" class="top-bar-link">
+          <i class="fas fa-user-circle" style="color: var(--color-gold);"></i> Patient Portal
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== 2. HEADER ==================== -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon-wrap">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">AL-MUALIJ</span>
+          <span class="brand-tagline">Eastern Medicine & Non-Surgical Care</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html#about" class="nav-link">About Clinic</a>
+        <a href="treatments.html" class="nav-link active">Non-Surgical Therapies</a>
+        <a href="index.html#symptom-locator" class="nav-link">Symptom Matcher</a>
+        <a href="index.html#doctors" class="nav-link">Specialists</a>
+        <a href="index.html#comparison" class="nav-link">Surgery vs Eastern</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="portal.html" class="btn btn-outline btn-sm">
+          <i class="fas fa-id-card"></i> Patient Portal
+        </a>
+        <button class="btn btn-primary btn-sm pulse-glow" onclick="openBookingModal()">
+          <i class="fas fa-calendar-alt"></i> Book Treatment
+        </button>
+        <button class="mobile-toggle" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <button class="drawer-close-btn" id="drawerCloseBtn">&times;</button>
+    <div class="brand-logo" style="margin-bottom: 2rem;">
+      <div class="logo-icon-wrap"><i class="fas fa-seedling"></i></div>
+      <div class="brand-text">
+        <span class="brand-title" style="color: #fff;">AL-MUALIJ</span>
+        <span class="brand-tagline">Eastern Medicine</span>
+      </div>
+    </div>
+    <div class="drawer-links">
+      <a href="index.html#about" class="drawer-link">About Clinic</a>
+      <a href="treatments.html" class="drawer-link active">Non-Surgical Therapies</a>
+      <a href="index.html#symptom-locator" class="drawer-link">Symptom Matcher</a>
+      <a href="index.html#doctors" class="drawer-link">Specialists & Hakims</a>
+      <a href="index.html#comparison" class="drawer-link">Surgery vs Eastern Care</a>
+      <a href="portal.html" class="drawer-link">Patient Portal & EHR</a>
+      <a href="index.html#contact" class="drawer-link">Location & Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==================== 3. PAGE HERO BANNER ==================== -->
+    <section class="section" style="background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 60%), var(--color-bg-light); padding: 4.5rem 0 3.5rem 0;">
+      <div class="container text-center" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <div class="badge-tag">Clinical Protocols</div>
+        <h1 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem; color: var(--color-primary);">
+          Proven Non-Surgical Therapies
+        </h1>
+        <p style="font-size: 1.15rem; color: var(--color-text-muted); line-height: 1.7;">
+          Every human body has the innate capacity to regenerate damaged tissues, decompress pinched nerves, and restore humoral equilibrium without invasive surgical incisions.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== 4. TREATMENTS DIRECTORY ==================== -->
+    <section class="section" style="padding-top: 1rem;">
+      <div class="container">
+        <div class="treatments-grid">
+          
+          <!-- Treatment 1: Hijama -->
+          <div class="treatment-card" id="hijama">
+            <div class="treatment-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80" alt="Therapeutic Hijama Wet Cupping">
+              <div class="treatment-category-badge"><i class="fas fa-tint"></i> Vascular Decompression</div>
+            </div>
+            <div class="treatment-body">
+              <h3 class="treatment-title">Therapeutic Hijama (Wet Cupping)</h3>
+              <div class="treatment-tagline">Sciatica, Disc Herniation & Toxin Extraction</div>
+              <p class="treatment-desc">
+                Sterile, negative-pressure vacuum extraction along myofascial and paravertebral meridians. Draws out stagnant deoxygenated blood, resolves cellular micro-adhesions, and decompresses inflamed sciatic nerve roots.
+              </p>
+              <div class="treatment-highlights">
+                <span class="treatment-tag">L4-L5 Disc Bulge</span>
+                <span class="treatment-tag">Sciatic Nerve Pain</span>
+                <span class="treatment-tag">High Blood Pressure</span>
+                <span class="treatment-tag">Chronic Fatigue</span>
+              </div>
+              <div class="treatment-footer">
+                <span class="treatment-duration"><i class="fas fa-clock"></i> 45 - 60 Mins</span>
+                <button class="btn btn-primary btn-sm" onclick="openBookingWithSpecialty('hijama')">
+                  Book Hijama
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treatment 2: Unani Tibb -->
+          <div class="treatment-card" id="unani">
+            <div class="treatment-img-wrap">
+              <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80" alt="Unani Tibb Herbal Medicine">
+              <div class="treatment-category-badge" style="background: rgba(217, 119, 6, 0.85);"><i class="fas fa-leaf"></i> Pulse & Phytotherapy</div>
+            </div>
+            <div class="treatment-body">
+              <h3 class="treatment-title">Unani Tibb & Nabz (Pulse) Diagnosis</h3>
+              <div class="treatment-tagline" style="color: var(--color-gold);">Humoral Equilibrium & Organ Rejuvenation</div>
+              <p class="treatment-desc">
+                Classical assessment of the 10 radial pulse vectors and humoral temperament (Dam, Balgham, Safra, Sauda). Customized herbal pharmacology (Majoon, Jawarish, Kushta) resolves internal inflammation at its constitutional origin.
+              </p>
+              <div class="treatment-highlights">
+                <span class="treatment-tag">IBS & Fatty Liver</span>
+                <span class="treatment-tag">Gastric Ulcers / GERD</span>
+                <span class="treatment-tag">Autoimmune Disorders</span>
+                <span class="treatment-tag">Metabolic Imbalance</span>
+              </div>
+              <div class="treatment-footer">
+                <span class="treatment-duration"><i class="fas fa-clock"></i> 40 Mins Consultation</span>
+                <button class="btn btn-gold btn-sm" onclick="openBookingWithSpecialty('unani')">
+                  Book Tibb Review
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treatment 3: Acupuncture -->
+          <div class="treatment-card" id="acupuncture">
+            <div class="treatment-img-wrap">
+              <img src="https://images.unsplash.com/photo-1512290900672-1f02e6c52a0a?auto=format&fit=crop&w=600&q=80" alt="Acupuncture and Moxibustion">
+              <div class="treatment-category-badge" style="background: rgba(8, 145, 178, 0.85);"><i class="fas fa-bolt"></i> Meridian Energy Flow</div>
+            </div>
+            <div class="treatment-body">
+              <h3 class="treatment-title">Classical Acupuncture & Moxibustion</h3>
+              <div class="treatment-tagline" style="color: var(--color-cyan);">Neuro-Vascular Pain & Migraine Resolution</div>
+              <p class="treatment-desc">
+                Ultra-fine, sterile filiform needles placed along neuro-acupuncture pathways, combined with warming Artemisia moxa. Stimulates local endorphin release, relaxes spastic vasculature, and clears intractable neurological pain.
+              </p>
+              <div class="treatment-highlights">
+                <span class="treatment-tag">Chronic Migraines</span>
+                <span class="treatment-tag">Trigeminal Neuralgia</span>
+                <span class="treatment-tag">Knee Osteoarthritis</span>
+                <span class="treatment-tag">Bell's Palsy</span>
+              </div>
+              <div class="treatment-footer">
+                <span class="treatment-duration"><i class="fas fa-clock"></i> 50 Mins</span>
+                <button class="btn btn-primary btn-sm" onclick="openBookingWithSpecialty('acupuncture')">
+                  Book Acupuncture
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treatment 4: Eastern Chiropractic -->
+          <div class="treatment-card" id="chiropractic">
+            <div class="treatment-img-wrap">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Eastern Spinal Realignment">
+              <div class="treatment-category-badge"><i class="fas fa-bone"></i> Spinal Biomechanics</div>
+            </div>
+            <div class="treatment-body">
+              <h3 class="treatment-title">Eastern Chiropractic & Bone Setting</h3>
+              <div class="treatment-tagline">Spinal Realignment & Non-Surgical Traction</div>
+              <p class="treatment-desc">
+                Gentle, manual mobilization of subluxated vertebrae, sacroiliac joints, and pelvic torsion. Re-establishes natural disc height, restores spinal fluid exchange, and corrects posture without metal rods or fusions.
+              </p>
+              <div class="treatment-highlights">
+                <span class="treatment-tag">Cervical Spondylosis</span>
+                <span class="treatment-tag">Scoliosis Curve Relief</span>
+                <span class="treatment-tag">Frozen Shoulder</span>
+                <span class="treatment-tag">Postural Kyphosis</span>
+              </div>
+              <div class="treatment-footer">
+                <span class="treatment-duration"><i class="fas fa-clock"></i> 45 Mins</span>
+                <button class="btn btn-primary btn-sm" onclick="openBookingWithSpecialty('chiropractic')">
+                  Book Alignment
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treatment 5: Hirudotherapy -->
+          <div class="treatment-card" id="leech">
+            <div class="treatment-img-wrap">
+              <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=600&q=80" alt="Medicinal Leech Therapy">
+              <div class="treatment-category-badge" style="background: rgba(217, 119, 6, 0.85);"><i class="fas fa-heartbeat"></i> Enzymatic Decongestion</div>
+            </div>
+            <div class="treatment-body">
+              <h3 class="treatment-title">Medicinal Hirudotherapy (Jalook)</h3>
+              <div class="treatment-tagline" style="color: var(--color-gold);">Varicose Veins & Micro-Vascular Clearing</div>
+              <p class="treatment-desc">
+                Application of laboratory-bred medical leeches that secrete 100+ bioactive enzymes including Hirudin (natural thrombin inhibitor) and Hyaluronidase. Dissolves micro-vascular blockages and relieves swollen limbs.
+              </p>
+              <div class="treatment-highlights">
+                <span class="treatment-tag">Varicose Veins</span>
+                <span class="treatment-tag">Tendonitis & Bursitis</span>
+                <span class="treatment-tag">Non-Healing Ulcers</span>
+                <span class="treatment-tag">Vascular Stagnation</span>
+              </div>
+              <div class="treatment-footer">
+                <span class="treatment-duration"><i class="fas fa-clock"></i> 60 Mins</span>
+                <button class="btn btn-gold btn-sm" onclick="openBookingWithSpecialty('chronic-pain')">
+                  Book Hirudotherapy
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treatment 6: Naturopathy -->
+          <div class="treatment-card" id="naturopathy">
+            <div class="treatment-img-wrap">
+              <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Naturopathic Detoxification">
+              <div class="treatment-category-badge"><i class="fas fa-apple-alt"></i> Metabolic Harmony</div>
+            </div>
+            <div class="treatment-body">
+              <h3 class="treatment-title">Naturopathic Detox & Humoral Dietetics</h3>
+              <div class="treatment-tagline">Cellular Regeneration & Hormonal Balance</div>
+              <p class="treatment-desc">
+                Bio-individual nutrition, fasting protocols, and botanical detox remedies structured to eradicate cellular acidosis, reverse insulin resistance, and harmonize endocrine function naturally.
+              </p>
+              <div class="treatment-highlights">
+                <span class="treatment-tag">PCOS & Infertility</span>
+                <span class="treatment-tag">Thyroid Dysregulation</span>
+                <span class="treatment-tag">Chronic Inflammation</span>
+                <span class="treatment-tag">Cellular Toxicity</span>
+              </div>
+              <div class="treatment-footer">
+                <span class="treatment-duration"><i class="fas fa-clock"></i> 45 Mins</span>
+                <button class="btn btn-primary btn-sm" onclick="openBookingWithSpecialty('naturopathy')">
+                  Book Detox Plan
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. WHAT TO EXPECT SECTION ==================== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-title-wrap">
+          <div class="badge-tag">Patient Experience</div>
+          <h2 class="section-title">What To Expect During Your Session</h2>
+          <p class="section-subtitle">
+            Our clinic is designed with serene, clinical-grade luxury to ensure maximum comfort, complete hygiene, and deeply therapeutic relaxation.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="fas fa-notes-medical"></i></div>
+            <h3>1. Comprehensive Intake & Nabz</h3>
+            <p>Our senior Hakims evaluate your medical imaging (MRI/CT), measure radial pulse dynamics, and assess tongue coating and constitutional temperament.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="fas fa-hand-sparkles"></i></div>
+            <h3>2. Sterile Preparation & Therapy</h3>
+            <p>Performed in single-use aseptic conditions with clinical-grade disposable suction cups, surgical-grade blades, and soothing botanical essential oils.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="fas fa-spa"></i></div>
+            <h3>3. Post-Therapy Fomentation</h3>
+            <p>Warm herbal compress and anti-inflammatory balsam application accelerates deep blood flow, providing instant lightness and pain relief.</p>
+          </div>
+
+          <div class="feature-card gold">
+            <div class="feature-icon-wrap"><i class="fas fa-clipboard-check"></i></div>
+            <h3>4. Digital Portal & Herbal Regimen</h3>
+            <p>Receive your customized herbal diet plan and digital progress notes accessible 24/7 on our online Patient Portal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 6. FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 1.25rem;">
+            <div class="logo-icon-wrap"><i class="fas fa-seedling"></i></div>
+            <div class="brand-text">
+              <span class="brand-title" style="color: #FFFFFF;">AL-MUALIJ</span>
+              <span class="brand-tagline">Eastern Medicine</span>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; line-height: 1.6;">
+            Specialized in treatment without surgery through authentic Eastern therapies, clinical Hijama, and Unani pharmacology.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-title">Non-Surgical Therapies</h4>
+          <div class="footer-links">
+            <a href="#hijama" class="footer-link">Therapeutic Hijama</a>
+            <a href="#unani" class="footer-link">Unani Pulse Diagnosis</a>
+            <a href="#acupuncture" class="footer-link">Acupuncture & Moxa</a>
+            <a href="#chiropractic" class="footer-link">Spinal Realignment</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Clinic Homepage</a>
+            <a href="portal.html" class="footer-link">Patient Portal</a>
+            <a href="index.html#doctors" class="footer-link">Specialists Directory</a>
+            <a href="index.html#contact" class="footer-link">24/7 Emergency Desk</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Consultation Desk</h4>
+          <p style="font-size: 0.875rem; color: #CBD5E1; margin-bottom: 1rem;">
+            Call our senior clinical triage team for non-surgical evaluation.
+          </p>
+          <button class="btn btn-primary btn-sm" onclick="openBookingModal()" style="width: 100%;">
+            Book Consultation
+          </button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Al-Mualij Medical Clinic. All Rights Reserved.</div>
+        <a href="portal.html" style="color: var(--color-jade-light);">Access Patient EHR Portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal (Shared) -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-dialog booking-modal-dialog">
+      <button class="modal-close-btn" onclick="closeBookingModal()">&times;</button>
+      <div class="booking-header">
+        <div class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; margin-bottom: 0.35rem;">
+          <i class="fas fa-shield-alt"></i> Non-Surgical Clinical Appointment
+        </div>
+        <h2>Reserve Your Consultation</h2>
+        <p>Complete the steps below to schedule your examination.</p>
+        <div class="booking-steps-bar">
+          <div class="step-progress-line" id="stepProgressLine"></div>
+          <div class="step-node active" id="stepNode1"><div class="step-circle">1</div><div class="step-label">Therapy</div></div>
+          <div class="step-node" id="stepNode2"><div class="step-circle">2</div><div class="step-label">Specialist</div></div>
+          <div class="step-node" id="stepNode3"><div class="step-circle">3</div><div class="step-label">Date & Time</div></div>
+          <div class="step-node" id="stepNode4"><div class="step-circle">4</div><div class="step-label">Patient Info</div></div>
+        </div>
+      </div>
+      <div class="booking-body">
+        <div class="booking-step-content active" id="bookingStep1">
+          <h3 class="step-heading">Step 1: Choose Your Non-Surgical Therapy</h3>
+          <div class="specialty-select-grid" id="bookingSpecialtyGrid"></div>
+        </div>
+        <div class="booking-step-content" id="bookingStep2">
+          <h3 class="step-heading">Step 2: Select Consulting Practitioner</h3>
+          <div class="provider-select-grid" id="bookingProviderGrid"></div>
+        </div>
+        <div class="booking-step-content" id="bookingStep3">
+          <h3 class="step-heading">Step 3: Select Date & Time</h3>
+          <div class="datetime-grid">
+            <div>
+              <div class="form-group">
+                <label class="form-label" for="bookingDateInput">Appointment Date (*)</label>
+                <input type="date" id="bookingDateInput" class="form-input" required>
+              </div>
+            </div>
+            <div class="time-slots-container">
+              <div class="time-period-group">
+                <h5>Morning Slots</h5>
+                <div class="time-slots-grid" id="morningSlotsGrid"></div>
+              </div>
+              <div class="time-period-group">
+                <h5>Afternoon Slots</h5>
+                <div class="time-slots-grid" id="afternoonSlotsGrid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="booking-step-content" id="bookingStep4">
+          <h3 class="step-heading">Step 4: Patient Information</h3>
+          <div class="patient-form-grid">
+            <div class="form-group"><label class="form-label">Full Name (*)</label><input type="text" id="patientNameInput" class="form-input" placeholder="Your Name" required></div>
+            <div class="form-group"><label class="form-label">Email (*)</label><input type="email" id="patientEmailInput" class="form-input" placeholder="Your Email" required></div>
+            <div class="form-group"><label class="form-label">Phone (*)</label><input type="tel" id="patientPhoneInput" class="form-input" placeholder="Phone Number" required></div>
+            <div class="form-group"><label class="form-label">Age & Gender</label><input type="text" id="patientAgeInput" class="form-input" placeholder="e.g. 38, Female"></div>
+            <div class="form-group form-full"><label class="form-label">Symptoms & Medical History</label><textarea id="patientSymptomsInput" class="form-textarea" rows="3" placeholder="Describe symptoms..."></textarea></div>
+          </div>
+        </div>
+      </div>
+      <div class="booking-footer">
+        <button class="btn btn-outline" id="bookingPrevBtn" style="display: none;" onclick="goToBookingStep(bookingState.currentStep - 1)"><i class="fas fa-arrow-left"></i> Previous</button>
+        <div style="flex-grow: 1;"></div>
+        <button class="btn btn-primary" id="bookingNextBtn" onclick="goToBookingStep(bookingState.currentStep + 1)">Next Step <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-primary" id="bookingSubmitBtn" style="display: none;" onclick="submitBooking()"><i class="fas fa-check-circle"></i> Confirm & Reserve</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Botpress Trigger -->
+  <button class="botpress-floating-btn" id="botpressTriggerBtn" aria-label="Open Health Chatbot">
+    <i class="fas fa-comments"></i>
+    <span class="botpress-unread-badge">1</span>
+  </button>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/n8n-integrations.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/botpress-init.js"></script>
+  <script src="js/doctors.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
