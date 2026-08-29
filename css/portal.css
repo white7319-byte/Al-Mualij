@@ -5,6 +5,14 @@
 .portal-body {
   background-color: var(--color-bg-light);
   min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* --- Portal Top Nav / App Bar --- */
@@ -70,6 +78,8 @@
   grid-template-columns: auto 1fr auto;
   gap: 2rem;
   align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .profile-avatar-large {
@@ -128,6 +138,22 @@
   position: relative;
   z-index: 10;
   margin-bottom: 2.5rem;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.quick-stats-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.quick-stats-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.quick-stats-row::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 3px;
 }
 
 .stat-box {
@@ -186,7 +212,23 @@
   border-bottom: 2px solid var(--color-border);
   margin-bottom: 2rem;
   overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 2px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.portal-tabs-nav::-webkit-scrollbar {
+  height: 6px;
+}
+
+.portal-tabs-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.portal-tabs-nav::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 3px;
 }
 
 .portal-tab-btn {
@@ -217,11 +259,14 @@
 /* --- Tab Panels --- */
 .portal-tab-panel {
   display: none;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .portal-tab-panel.active {
   display: block;
   animation: fadeIn 0.3s ease;
+  width: 100%;
 }
 
 /* --- Appointments Cards & Timeline --- */
@@ -319,8 +364,10 @@
 /* --- Prescriptions & Herbal Regimens --- */
 .prescriptions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .rx-card {
@@ -431,6 +478,23 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-top: 2rem;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.milestones-timeline::-webkit-scrollbar {
+  height: 6px;
+}
+
+.milestones-timeline::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.milestones-timeline::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 3px;
 }
 
 .milestone-step {

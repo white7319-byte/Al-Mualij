@@ -48,20 +48,45 @@ const patientReports = [
 ];
 
 /**
+ * Checks if current user is a demo account
+ */
+function isDemoUser() {
+  const user = window.ClinicDB.currentUser;
+  return user && user.uid && user.uid.startsWith('demo-');
+}
+
+/**
  * Initializes Patient Portal UI
  */
 async function initPatientPortal() {
   const user = window.ClinicDB.currentUser;
 
   if (user) {
-    activePatient = {
-      ...activePatient,
-      id: user.uid ? `AM-${user.uid.slice(0, 7).toUpperCase()}` : activePatient.id,
-      name: user.name || activePatient.name,
-      email: user.email || activePatient.email,
-      bloodGroup: user.bloodGroup || activePatient.bloodGroup,
-      mizaj: user.mizaj || activePatient.mizaj
-    };
+    if (isDemoUser()) {
+      // Demo user - use predefined data
+      activePatient = {
+        ...activePatient,
+        id: user.uid ? `AM-${user.uid.slice(0, 7).toUpperCase()}` : activePatient.id,
+        name: user.name || activePatient.name,
+        email: user.email || activePatient.email,
+        bloodGroup: user.bloodGroup || activePatient.bloodGroup,
+        mizaj: user.mizaj || activePatient.mizaj
+      };
+    } else {
+      // Real patient - use only their data from registration
+      activePatient = {
+        id: user.uid ? `AM-${user.uid.slice(0, 7).toUpperCase()}` : 'AM-PATIENT',
+        name: user.name || 'Patient',
+        email: user.email || '',
+        age: user.age || null,
+        gender: user.gender || 'Not Specified',
+        bloodGroup: user.bloodGroup || 'Not Provided',
+        mizaj: user.mizaj || 'Not Assessed',
+        primarySpecialist: user.primarySpecialist || 'Pending Assignment',
+        condition: user.condition || 'General Consultation',
+        surgeryStatus: user.surgeryStatus || 'Pending Assessment'
+      };
+    }
   }
 
   renderPatientBanner();
@@ -104,28 +129,44 @@ async function loadAndRenderAppointments() {
     bookings = await window.ClinicDB.getPatientBookings(activePatient.email);
   }
 
-  // If no dynamic bookings exist, provide realistic defaults
+  // If no dynamic bookings exist, show appropriate content
   if (bookings.length === 0) {
-    bookings = [
-      {
-        referenceNumber: "AM-2026-7842",
-        specialtyName: "Hijama (Wet Cupping Therapy - Session 4)",
-        doctorName: "Dr. Amina Khalil (PT, Hijama Specialist)",
-        appointmentDate: "2026-09-02",
-        appointmentTime: "10:30 AM",
-        status: "confirmed",
-        clinicalNotes: "Targeted lumbar vacuum decompression on bladder meridian."
-      },
-      {
-        referenceNumber: "AM-2026-6219",
-        specialtyName: "Unani Pulse Review & Herbal Regimen Follow-up",
-        doctorName: "Hakim Dr. Tariq Al-Mansoor",
-        appointmentDate: "2026-08-10",
-        appointmentTime: "02:00 PM",
-        status: "completed",
-        clinicalNotes: "Damwi temperament stabilized. Disc inflammation down by 85%."
-      }
-    ];
+    if (isDemoUser()) {
+      // Show demo bookings for demo accounts only
+      bookings = [
+        {
+          referenceNumber: "AM-2026-7842",
+          specialtyName: "Hijama (Wet Cupping Therapy - Session 4)",
+          doctorName: "Dr. Amina Khalil (PT, Hijama Specialist)",
+          appointmentDate: "2026-09-02",
+          appointmentTime: "10:30 AM",
+          status: "confirmed",
+          clinicalNotes: "Targeted lumbar vacuum decompression on bladder meridian."
+        },
+        {
+          referenceNumber: "AM-2026-6219",
+          specialtyName: "Unani Pulse Review & Herbal Regimen Follow-up",
+          doctorName: "Hakim Dr. Tariq Al-Mansoor",
+          appointmentDate: "2026-08-10",
+          appointmentTime: "02:00 PM",
+          status: "completed",
+          clinicalNotes: "Damwi temperament stabilized. Disc inflammation down by 85%."
+        }
+      ];
+    } else {
+      // For real patients with no bookings, show empty state
+      container.innerHTML = `
+        <div style="text-align: center; padding: 3rem 1.5rem; background: var(--color-bg-alt); border-radius: var(--radius-lg); border: 2px dashed var(--color-border);">
+          <i class="fas fa-calendar-check" style="font-size: 2.5rem; color: var(--color-jade); margin-bottom: 1rem; display: block;"></i>
+          <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">No Appointments Yet</h3>
+          <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">You haven't booked any consultations yet. Start your healing journey by scheduling your first appointment.</p>
+          <button class="btn btn-primary" onclick="openBookingModal()">
+            <i class="fas fa-plus"></i> Book Your First Session
+          </button>
+        </div>
+      `;
+      return;
+    }
   }
 
   container.innerHTML = bookings.map((apt, index) => {
@@ -193,32 +234,45 @@ async function loadAndRenderPrescriptions() {
 
   // Default formulations if none in Firestore yet
   if (prescriptions.length === 0) {
-    prescriptions = [
-      {
-        name: "Hab-e-Suranjan Al-Mualij",
-        category: "Anti-Inflammatory Joint & Sciatica Formulation",
-        dosage: "1 Tablet Twice Daily (Morning & Evening after meals)",
-        instructions: "Take with warm goat milk or lukewarm water. Dissolves humoral uric toxins.",
-        timing: "Morning & Evening",
-        dietRestrictions: "Avoid sour curd, red meat, and cold beverages during active therapy."
-      },
-      {
-        name: "Roghan-e-Balsan (Balsam Herbal Oil)",
-        category: "Topical Spine & Deep Fascia Realignment Oil",
-        dosage: "Gently massage 5ml along the lower lumbar spine (L4-S1)",
-        instructions: "Apply warm and follow with warm towel compression for 15 minutes.",
-        timing: "Night before bed",
-        dietRestrictions: "Keep lower back protected from direct draft/AC."
-      },
-      {
-        name: "Jawarish Shahi & Arq-e-Mako",
-        category: "Liver & Metabolic Detox Tonic",
-        dosage: "5g Jawarish + 50ml Arq in morning on empty stomach",
-        instructions: "Balances internal digestive heat and accelerates tissue regeneration.",
-        timing: "Early Morning",
-        dietRestrictions: "Drink at least 2.5L structured lukewarm water daily."
-      }
-    ];
+    if (isDemoUser()) {
+      // Show demo prescriptions for demo accounts only
+      prescriptions = [
+        {
+          name: "Hab-e-Suranjan Al-Mualij",
+          category: "Anti-Inflammatory Joint & Sciatica Formulation",
+          dosage: "1 Tablet Twice Daily (Morning & Evening after meals)",
+          instructions: "Take with warm goat milk or lukewarm water. Dissolves humoral uric toxins.",
+          timing: "Morning & Evening",
+          dietRestrictions: "Avoid sour curd, red meat, and cold beverages during active therapy."
+        },
+        {
+          name: "Roghan-e-Balsan (Balsam Herbal Oil)",
+          category: "Topical Spine & Deep Fascia Realignment Oil",
+          dosage: "Gently massage 5ml along the lower lumbar spine (L4-S1)",
+          instructions: "Apply warm and follow with warm towel compression for 15 minutes.",
+          timing: "Night before bed",
+          dietRestrictions: "Keep lower back protected from direct draft/AC."
+        },
+        {
+          name: "Jawarish Shahi & Arq-e-Mako",
+          category: "Liver & Metabolic Detox Tonic",
+          dosage: "5g Jawarish + 50ml Arq in morning on empty stomach",
+          instructions: "Balances internal digestive heat and accelerates tissue regeneration.",
+          timing: "Early Morning",
+          dietRestrictions: "Drink at least 2.5L structured lukewarm water daily."
+        }
+      ];
+    } else {
+      // For real patients with no prescriptions, show empty state
+      container.innerHTML = `
+        <div style="text-align: center; padding: 3rem 1.5rem; background: var(--color-bg-alt); border-radius: var(--radius-lg); border: 2px dashed var(--color-border);">
+          <i class="fas fa-leaf" style="font-size: 2.5rem; color: var(--color-jade); margin-bottom: 1rem; display: block;"></i>
+          <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">No Prescriptions Yet</h3>
+          <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Herbal prescriptions will appear here after your first consultation with our Hakim (Unani medicine practitioner).</p>
+        </div>
+      `;
+      return;
+    }
   }
 
   container.innerHTML = prescriptions.map(rx => `
@@ -247,6 +301,19 @@ function renderReports() {
   const container = document.getElementById('portalReportsList');
   if (!container) return;
 
+  if (!isDemoUser()) {
+    // For real patients with no reports, show empty state
+    container.innerHTML = `
+      <div style="text-align: center; padding: 3rem 1.5rem; background: var(--color-bg-alt); border-radius: var(--radius-lg); border: 2px dashed var(--color-border);">
+        <i class="fas fa-file-medical-alt" style="font-size: 2.5rem; color: var(--color-jade); margin-bottom: 1rem; display: block;"></i>
+        <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">No Reports Yet</h3>
+        <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Diagnostic reports and clinical summaries will be available after your consultations.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // For demo users, show sample reports
   container.innerHTML = patientReports.map(rep => `
     <div class="report-item">
       <div style="display: flex; align-items: center; gap: 1rem;">
