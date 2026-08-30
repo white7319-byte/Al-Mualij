@@ -478,6 +478,7 @@ function openBookingModal() {
     }
 
     modal.classList.add('active');
+    lockBodyScroll();
     goToBookingStep(1);
   }
 }
@@ -486,6 +487,7 @@ function closeBookingModal() {
   const modal = document.getElementById('bookingModal');
   if (modal) {
     modal.classList.remove('active');
+    unlockBodyScroll();
   }
 }
 

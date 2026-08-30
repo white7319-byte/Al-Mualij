@@ -469,3 +469,278 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* ===== RESPONSIVE STYLES FOR BOOKING ENGINE ===== */
+
+/* Tablets (Max 768px) */
+@media (max-width: 768px) {
+  .booking-modal-dialog {
+    max-width: 95vw;
+    border-radius: var(--radius-lg);
+  }
+  
+  .booking-header {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .booking-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .booking-header p {
+    font-size: 0.85rem;
+  }
+  
+  .booking-body {
+    padding: 1.25rem;
+    min-height: auto;
+    max-height: 70vh;
+  }
+  
+  .booking-footer {
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .specialty-select-grid,
+  .provider-select-grid,
+  .patient-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-full {
+    grid-column: span 1;
+  }
+  
+  .datetime-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .time-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .specialty-option-card,
+  .provider-option-card {
+    padding: 1rem;
+  }
+  
+  .step-label {
+    display: none;
+  }
+  
+  .booking-steps-bar::before {
+    left: 20px;
+    right: 20px;
+  }
+  
+  .step-progress-line {
+    left: 20px;
+  }
+}
+
+/* Mobile (Max 480px) */
+@media (max-width: 480px) {
+  .booking-modal-dialog {
+    max-width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    max-height: unset;
+  }
+  
+  .booking-header {
+    padding: 1.25rem 1rem;
+  }
+  
+  .booking-header h2 {
+    font-size: 1.15rem;
+  }
+  
+  .booking-header p {
+    font-size: 0.8rem;
+  }
+  
+  .booking-body {
+    padding: 1rem;
+    min-height: auto;
+    max-height: calc(100vh - 180px);
+  }
+  
+  .booking-footer {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+  
+  .step-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
+  .booking-steps-bar {
+    margin-top: 1rem;
+  }
+  
+  .booking-steps-bar::before {
+    top: 16px;
+    left: 15px;
+    right: 15px;
+  }
+  
+  .step-progress-line {
+    top: 16px;
+    left: 15px;
+  }
+  
+  .step-heading {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .step-subheading {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .specialty-select-grid,
+  .provider-select-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .specialty-option-card,
+  .provider-option-card {
+    padding: 0.85rem;
+    gap: 0.75rem;
+  }
+  
+  .specialty-icon-box {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+  
+  .specialty-info h4 {
+    font-size: 0.95rem;
+  }
+  
+  .specialty-info p {
+    font-size: 0.75rem;
+  }
+  
+  .provider-thumb {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .provider-details h4 {
+    font-size: 0.9rem;
+  }
+  
+  .datetime-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .time-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+  
+  .time-slot-btn {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.8rem;
+  }
+  
+  .patient-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.9rem;
+  }
+  
+  .confirmation-slip-wrap {
+    padding: 1.25rem;
+  }
+  
+  .confirmation-badge-top {
+    width: 56px;
+    height: 56px;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .confirmation-title {
+    font-size: 1.25rem;
+  }
+  
+  .slip-details-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .slip-row {
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+  }
+  
+  .qr-box {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Extra Small Mobile (Max 360px) */
+@media (max-width: 360px) {
+  .booking-header h2 {
+    font-size: 1rem;
+  }
+  
+  .booking-body {
+    padding: 0.85rem;
+  }
+  
+  .step-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+  
+  .step-heading {
+    font-size: 1rem;
+  }
+  
+  .specialty-option-card,
+  .provider-option-card {
+    padding: 0.75rem;
+  }
+  
+  .specialty-icon-box {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}

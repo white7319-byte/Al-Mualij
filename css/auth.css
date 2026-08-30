@@ -197,3 +197,158 @@
   background: rgba(217, 119, 6, 0.08);
   color: var(--color-gold);
 }
+
+/* ===== RESPONSIVE STYLES FOR AUTHENTICATION ===== */
+
+/* Tablets (Max 768px) */
+@media (max-width: 768px) {
+  .auth-wrapper {
+    padding: 1.5rem 1rem;
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .auth-card {
+    max-width: 95vw;
+    border-radius: var(--radius-lg);
+  }
+  
+  .auth-header {
+    padding: 1.75rem 1.5rem;
+  }
+  
+  .auth-header .brand-title {
+    font-size: 1.3rem;
+  }
+  
+  .auth-header .brand-tagline {
+    font-size: 0.7rem;
+  }
+  
+  .role-toggle-bar {
+    margin-top: 1rem;
+  }
+  
+  .auth-body {
+    padding: 1.5rem;
+  }
+  
+  .auth-mode-switch {
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-tab-link {
+    font-size: 0.9rem;
+  }
+  
+  .demo-login-box {
+    padding: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .demo-login-title {
+    font-size: 0.7rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .demo-buttons-grid {
+    gap: 0.4rem;
+  }
+  
+  .btn-demo {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Mobile (Max 480px) */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .auth-card {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+  
+  .auth-header {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .auth-header .brand-title {
+    font-size: 1.15rem;
+  }
+  
+  .auth-header .brand-tagline {
+    font-size: 0.65rem;
+  }
+  
+  .auth-body {
+    padding: 1.25rem;
+  }
+  
+  .auth-mode-switch {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .auth-tab-link {
+    font-size: 0.85rem;
+    padding-bottom: 0.35rem;
+  }
+  
+  .demo-login-box {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .demo-login-title {
+    font-size: 0.65rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .demo-buttons-grid {
+    gap: 0.35rem;
+  }
+  
+  .btn-demo {
+    padding: 0.35rem 0.45rem;
+    font-size: 0.65rem;
+    gap: 0.25rem;
+  }
+}
+
+/* Extra Small Mobile (Max 360px) */
+@media (max-width: 360px) {
+  .auth-wrapper {
+    padding: 0.75rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .auth-header {
+    padding: 1.25rem 1rem;
+  }
+  
+  .auth-header .brand-title {
+    font-size: 1rem;
+  }
+  
+  .auth-body {
+    padding: 1rem;
+  }
+  
+  .role-toggle-bar {
+    padding: 3px;
+  }
+  
+  .role-toggle-btn {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}

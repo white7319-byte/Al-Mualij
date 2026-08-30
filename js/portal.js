@@ -372,7 +372,7 @@ function showAppointmentSlipModal(ref, specialty, doctor, date, time) {
 
   modal.innerHTML = `
     <div class="modal-dialog" style="max-width: 520px;">
-      <button class="modal-close-btn" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>
+      <button class="modal-close-btn" onclick="this.closest('.modal-overlay').classList.remove('active'); unlockBodyScroll();">&times;</button>
       <div style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-jade) 100%); color: #fff; padding: 2rem; border-radius: var(--radius-xl) var(--radius-xl) 0 0; text-align: center;">
         <div style="font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: #A7F3D0; font-weight: 700;">Al-Mualij Eastern Medicine Clinic</div>
         <h2 style="color: #fff; font-size: 1.5rem; margin: 0.5rem 0;">Digital Clinic Pass</h2>
@@ -401,6 +401,7 @@ function showAppointmentSlipModal(ref, specialty, doctor, date, time) {
   `;
 
   modal.classList.add('active');
+  lockBodyScroll();
 }
 
 /**

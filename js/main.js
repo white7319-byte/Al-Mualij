@@ -5,6 +5,20 @@
  * ==========================================================================
  */
 
+/**
+ * MODAL SCROLL LOCK UTILITIES
+ * Prevents background scrolling when modal is open
+ */
+function lockBodyScroll() {
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function unlockBodyScroll() {
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
 // Symptom Locator Data Matrix
 const SYMPTOM_TREATMENT_MAP = {
   sciatica: {

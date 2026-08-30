@@ -245,7 +245,7 @@ function openClinicalNotesModal(referenceNumber) {
 
   modal.innerHTML = `
     <div class="modal-dialog" style="max-width: 540px;">
-      <button class="modal-close-btn" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>
+      <button class="modal-close-btn" onclick="this.closest('.modal-overlay').classList.remove('active'); unlockBodyScroll();">&times;</button>
       
       <div style="background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%); color: #fff; padding: 2rem; border-radius: var(--radius-xl) var(--radius-xl) 0 0;">
         <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 0.25rem;"><i class="fas fa-notes-medical"></i> Clinical Examination & Diagnosis</h3>
@@ -274,7 +274,7 @@ function openClinicalNotesModal(referenceNumber) {
         </div>
 
         <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
-          <button class="btn btn-outline" onclick="this.closest('.modal-overlay').classList.remove('active')">Cancel</button>
+          <button class="btn btn-outline" onclick="this.closest('.modal-overlay').classList.remove('active'); unlockBodyScroll();">Cancel</button>
           <button class="btn btn-primary" onclick="saveClinicalNote('${apt.referenceNumber}')">
             <i class="fas fa-save"></i> Save to Patient EHR
           </button>
@@ -284,6 +284,7 @@ function openClinicalNotesModal(referenceNumber) {
   `;
 
   modal.classList.add('active');
+  lockBodyScroll();
 }
 
 async function saveClinicalNote(referenceNumber) {
@@ -297,7 +298,11 @@ async function saveClinicalNote(referenceNumber) {
   }
 
   await window.ClinicDB.updateBookingStatus(referenceNumber, status, note);
-  document.getElementById('clinicalNotesModal')?.classList.remove('active');
+  const modal = document.getElementById('clinicalNotesModal');
+  if (modal) {
+    modal.classList.remove('active');
+    unlockBodyScroll();
+  }
 
   if (window.showToast) {
     window.showToast('Clinical diagnosis note saved to Firestore EHR successfully!', 'success');
@@ -321,7 +326,7 @@ function openPrescribeModal(referenceNumber, patientName, patientEmail) {
 
   modal.innerHTML = `
     <div class="modal-dialog" style="max-width: 580px;">
-      <button class="modal-close-btn" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>
+      <button class="modal-close-btn" onclick="this.closest('.modal-overlay').classList.remove('active'); unlockBodyScroll();">&times;</button>
       
       <div style="background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-jade) 100%); color: #fff; padding: 2rem; border-radius: var(--radius-xl) var(--radius-xl) 0 0;">
         <h3 style="color: #fff; font-size: 1.35rem; margin-bottom: 0.25rem;"><i class="fas fa-mortar-pestle"></i> Prescribe Eastern Herbal Regimen</h3>
@@ -356,7 +361,7 @@ function openPrescribeModal(referenceNumber, patientName, patientEmail) {
         </div>
 
         <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
-          <button class="btn btn-outline" onclick="this.closest('.modal-overlay').classList.remove('active')">Cancel</button>
+          <button class="btn btn-outline" onclick="this.closest('.modal-overlay').classList.remove('active'); unlockBodyScroll();">Cancel</button>
           <button class="btn btn-primary" onclick="savePrescription('${patientEmail}', '${patientName}')">
             <i class="fas fa-prescription-bottle-alt"></i> Issue Prescription to Portal
           </button>
@@ -366,6 +371,7 @@ function openPrescribeModal(referenceNumber, patientName, patientEmail) {
   `;
 
   modal.classList.add('active');
+  lockBodyScroll();
 }
 
 async function savePrescription(patientEmail, patientName) {
@@ -390,7 +396,11 @@ async function savePrescription(patientEmail, patientName) {
     patientEmail: patientEmail.toLowerCase().trim()
   });
 
-  document.getElementById('prescribeRxModal')?.classList.remove('active');
+  const modal = document.getElementById('prescribeRxModal');
+  if (modal) {
+    modal.classList.remove('active');
+    unlockBodyScroll();
+  }
 
   if (window.showToast) {
     window.showToast(`Prescription "${name}" issued and synced to patient's EHR portal!`, 'success');

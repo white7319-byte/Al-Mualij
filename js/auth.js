@@ -252,11 +252,15 @@ function openAuthModal(role = 'patient') {
   }
   setAuthRole(role);
   modal.classList.add('active');
+  lockBodyScroll();
 }
 
 function closeAuthModal() {
   const modal = document.getElementById('authModal');
-  if (modal) modal.classList.remove('active');
+  if (modal) {
+    modal.classList.remove('active');
+    unlockBodyScroll();
+  }
 }
 
 /**

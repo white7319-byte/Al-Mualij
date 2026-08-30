@@ -1,5 +1,6 @@
 /* ==========================================================================
-   AL-MUALIJ CLINIC - RESPONSIVE & MOBILE DESIGN ADAPTATIONS
+   AL-MUALIJ CLINIC - COMPREHENSIVE RESPONSIVE & MOBILE DESIGN ADAPTATIONS
+   Mobile-First Approach with Breakpoints for All Screen Sizes
    ========================================================================== */
 
 /* --- Mobile Drawer Navigation --- */
@@ -19,6 +20,25 @@
   padding: 2.5rem 1.75rem;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.mobile-nav-drawer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-nav-drawer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mobile-nav-drawer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.mobile-nav-drawer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .mobile-nav-drawer.open {
@@ -572,5 +592,563 @@
   .milestone-step {
     padding: 0.6rem;
     font-size: 0.85rem;
+  }
+}
+
+/* ===== ENHANCED RESPONSIVE RULES FOR ALL COMPONENTS ===== */
+
+/* Large Desktop (1400px and above) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+  
+  .section {
+    padding: 6.5rem 0;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+  }
+}
+
+/* Desktop to Tablet Transition (1025px to 1199px) */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .header-container {
+    gap: 2rem;
+  }
+  
+  .nav-menu {
+    gap: 1.25rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.4rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .doctors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .treatments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet Portrait (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .section {
+    padding: 4.5rem 0;
+  }
+  
+  .header-container {
+    gap: 1.5rem;
+  }
+  
+  .nav-menu {
+    gap: 1rem;
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-metrics {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .doctors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .treatments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .comparison-table-wrap {
+    overflow-x: auto;
+  }
+  
+  .comparison-table {
+    font-size: 0.95rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem;
+  }
+  
+  .auth-body {
+    padding: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .form-input, .form-textarea, .form-select {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Landscape (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .top-bar {
+    height: 50px;
+    font-size: 0.75rem;
+  }
+  
+  .top-bar-left {
+    gap: 1rem;
+  }
+  
+  .top-bar-right {
+    gap: 1rem;
+  }
+  
+  .header {
+    height: 70px;
+  }
+  
+  .logo-icon-wrap {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+  
+  .brand-title {
+    font-size: 1.2rem;
+  }
+  
+  .brand-tagline {
+    font-size: 0.65rem;
+  }
+  
+  .nav-menu {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.85rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+  }
+  
+  .metric-number {
+    font-size: 1.55rem;
+  }
+  
+  .section-title {
+    font-size: 1.85rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+  
+  .doctors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .treatments-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .symptom-chips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .modal-dialog {
+    max-width: 90vw;
+    max-height: 85vh;
+  }
+  
+  .booking-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .auth-card {
+    max-width: 90vw;
+  }
+  
+  .auth-header {
+    padding: 1.75rem 1.5rem;
+  }
+  
+  .auth-body {
+    padding: 1.5rem;
+  }
+}
+
+/* Large Mobile (361px to 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .top-bar {
+    height: 45px;
+    font-size: 0.7rem;
+  }
+  
+  .header {
+    height: 65px;
+  }
+  
+  .logo-icon-wrap {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  
+  .brand-title {
+    font-size: 1.1rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .hero-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .metric-number {
+    font-size: 1.4rem;
+  }
+  
+  .metric-label {
+    font-size: 0.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .feature-card {
+    padding: 1.25rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1rem;
+  }
+  
+  .feature-card p {
+    font-size: 0.85rem;
+  }
+  
+  .feature-icon-wrap {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+  
+  .doctors-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .doctor-card {
+    padding: 1.25rem;
+  }
+  
+  .treatments-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .treatment-img-wrap {
+    height: 180px;
+  }
+  
+  .symptom-chips-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .symptom-chip {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .comparison-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .comparison-table {
+    font-size: 0.8rem;
+    min-width: 100%;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.6rem 0.5rem;
+  }
+  
+  .modal-dialog {
+    width: 95vw;
+    max-height: 85vh;
+    border-radius: var(--radius-lg);
+  }
+  
+  .booking-header {
+    padding: 1.2rem 1rem;
+  }
+  
+  .booking-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .booking-body {
+    padding: 1rem 0.85rem;
+    max-height: 65vh;
+  }
+  
+  .booking-footer {
+    padding: 0.75rem 1rem;
+  }
+  
+  .auth-card {
+    max-width: 95vw;
+    border-radius: var(--radius-lg);
+  }
+  
+  .auth-header {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .auth-header .brand-title {
+    font-size: 1.35rem;
+  }
+  
+  .auth-body {
+    padding: 1.25rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-input, .form-textarea, .form-select {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.65rem 1.2rem;
+    gap: 0.5rem;
+  }
+  
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn-lg {
+    padding: 0.85rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra Small Mobile (max 360px) */
+@media (max-width: 360px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .section {
+    padding: 2.5rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+  }
+  
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .hero-section {
+    padding: 2rem 0;
+  }
+  
+  .header {
+    height: 60px;
+  }
+  
+  .logo-icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .brand-title {
+    font-size: 1rem;
+  }
+  
+  .brand-tagline {
+    display: none;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-description {
+    display: none;
+  }
+  
+  .hero-metrics {
+    display: none;
+  }
+  
+  .modal-dialog {
+    max-height: 95vh;
+  }
+}
+
+/* High Resolution Displays (2x DPI and above) */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  img, svg {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0f0f0f;
+    color: #e0e0e0;
+  }
+  
+  .modal-dialog,
+  .auth-card {
+    background: #1a1a1a;
+    border-color: rgba(255, 255, 255, 0.1);
   }
 }
